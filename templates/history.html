@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <title>History Deteksi</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+
+<body class="bg-light">
+
+<div class="container mt-4">
+
+    <h1 class="text-center mb-4">
+        History Deteksi
+    </h1>
+
+    <form
+        action="/delete"
+        method="POST"
+        onsubmit="return confirm('Apakah Anda yakin ingin menghapus data yang dipilih?')"
+    >
+
+        <table class="table table-bordered table-striped">
+
+            <thead class="table-dark">
+
+                <tr>
+
+                    <th>Pilih</th>
+                    <th>ID</th>
+                    <th>Filename</th>
+                    <th>Class YOLOv8</th>
+                    <th>Confidence YOLOv8</th>
+                    <th>Class YOLOv9</th>
+                    <th>Confidence YOLOv9</th>
+                    <th>Tanggal</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                {% for row in data %}
+
+                <tr>
+
+                    <td>
+                        <input
+                            type="checkbox"
+                            name="selected_ids"
+                            value="{{ row[0] }}"
+                        >
+                    </td>
+
+                    <td>{{ row[0] }}</td>
+                    <td>{{ row[1] }}</td>
+
+                    <!-- class_v8 -->
+                    <td>{{ row[5] }}</td>
+
+                    <!-- confidence_v8 -->
+                    <td>{{ row[2] }}</td>
+
+                    <!-- class_v9 -->
+                    <td>{{ row[6] }}</td>
+
+                    <!-- confidence_v9 -->
+                    <td>{{ row[3] }}</td>
+
+                    <!-- created_at -->
+                    <td>{{ row[4] }}</td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+        <button
+            type="submit"
+            class="btn btn-danger"
+        >
+            Hapus Data Terpilih
+        </button>
+
+        <a
+            href="/"
+            class="btn btn-primary"
+        >
+            Kembali
+        </a>
+
+    </form>
+
+</div>
+
+</body>
+</html>

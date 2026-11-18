@@ -1,0 +1,232 @@
+<!-- result.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <title>Hasil Deteksi YOLO</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+<body class="bg-light">
+
+<div class="container mt-5">
+
+    <!-- JUDUL -->
+    <div class="text-center mb-5">
+
+        <h1 class="fw-bold">
+            Perbandingan YOLOv8 vs YOLOv9
+        </h1>
+
+        <p class="text-muted">
+            Hasil deteksi objek menggunakan dua model YOLO
+        </p>
+
+    </div>
+
+    <!-- ROW HASIL -->
+    <div class="row">
+
+        <!-- YOLOv8 -->
+        <div class="col-md-6 mb-4">
+
+            <div class="card shadow">
+
+                <div class="card-header bg-primary text-white">
+
+                    <h3 class="text-center">
+                        YOLOv8
+                    </h3>
+
+                </div>
+
+                <div class="card-body">
+
+                    <!-- GAMBAR -->
+                    <img 
+                        src="{{ image_v8 }}"
+                        class="img-fluid rounded"
+                    >
+
+                    <!-- TABEL -->
+                    <table class="table table-bordered mt-4">
+
+                        <thead class="table-dark">
+
+                            <tr>
+                                <th>No</th>
+                                <th>Confidence</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            {% for d in detections_v8 %}
+
+                            <tr>
+
+                                <td>
+                                    {{ loop.index }}
+                                </td>
+
+                                <td>
+                                    {{ d.confidence }}
+                                </td>
+
+                            </tr>
+
+                            {% endfor %}
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- YOLOv9 -->
+        <div class="col-md-6 mb-4">
+
+            <div class="card shadow">
+
+                <div class="card-header bg-success text-white">
+
+                    <h3 class="text-center">
+                        YOLOv9
+                    </h3>
+
+                </div>
+
+                <div class="card-body">
+
+                    <!-- GAMBAR -->
+                    <img 
+                        src="{{ image_v9 }}"
+                        class="img-fluid rounded"
+                    >
+
+                    <!-- TABEL -->
+                    <table class="table table-bordered mt-4">
+
+                        <thead class="table-dark">
+
+                            <tr>
+                                <th>No</th>
+                                <th>Confidence</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            {% for d in detections_v9 %}
+
+                            <tr>
+
+                                <td>
+                                    {{ loop.index }}
+                                </td>
+
+                                <td>
+                                    {{ d.confidence }}
+                                </td>
+
+                            </tr>
+
+                            {% endfor %}
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- BUTTON KEMBALI -->
+    <div class="text-center mt-4 mb-5">
+
+        <a href="/" class="btn btn-dark btn-lg">
+
+            Upload Gambar Lagi
+
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>
+
+=============================
+
+
+<!-- index.html -->
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>YOLO Detection</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container mt-5">
+
+    <div class="text-center mb-4">
+        <h1>Perbandingan model yolov8n dan yolov9t pada deteksi sampah organik dan anorganik</h1>
+    </div>
+
+    <div class="card p-4">
+
+        <form action="/upload" method="POST" enctype="multipart/form-data">
+
+            <!-- INPUT GAMBAR -->
+            <input 
+                type="file" 
+                name="image"
+                class="form-control"
+                required
+            >
+
+            <!-- BUTTON -->
+            <button 
+                type="submit"
+                class="btn btn-primary mt-3"
+            >
+                Upload Gambar
+            </button>
+
+            <a href="/history" class="btn btn-success mt-3 ms-2">
+    Lihat History
+</a>
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+</html>
+
+
+
+============================================================================
